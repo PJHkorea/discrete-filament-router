@@ -1,99 +1,99 @@
-### 해당 저장소는 차세대 플라즈마 제어 시스템을 위한 **아이디어 스케치**입니다. HPC 기술과 하드웨어 융합 소프트웨어 아키텍처를 통합 검증하기 위한 **거시적 개념 실증(PoC) 및 브레인스토밍 저장소**라고 보시면 됩니다. SF소설 이라고 보셔도 무방할 정도로 아주 가벼운 저장소가 될 예정입니다
+### This repository is an **idea sketch** for a next-generation plasma control system. Think of it as a **macro-level Proof of Concept (PoC) and brainstorming repository** for the integrated verification of HPC technology and hardware-software convergence architecture. It is designed to be an extremely lightweight repository—to the point where it could easily be read as a sci-fi novel.
 
 
 
 # Discrete Filament Router
 
-### DFR 시스템은 기존 핵융합 방식인 토카막 방식의 3D 거대한 플라즈마 제어 한계를 거시적 1D 및 방향성 부여와 4개 레이어 하드웨어 융합 제어 루프를 통해 우회해보려 하는 아이디어입니다.
+### The DFR system is an concept that attempts to bypass the 3D massive plasma control constraints of conventional fusion methods (such as the Tokamak approach) by enforcing a macro-1D constraint, applying directional bias, and deploying a 4-layer hardware-software converged control loop.
 
 ---
 
-## 시작하기 전 핵융합에 대한 저만의 생각이 담긴 인프라 설계를 간략하게 했습니다.
+## Before diving into the technical details, here is a brief overview of my personal infrastructural design philosophy regarding nuclear fusion.
 
-## 기존 핵융합 방식은 거대한 3차원 플라즈마를 통제해야 하는 **부피적 제어 한계(Volumetric Constraint)**를 안고 있습니다.
+## Conventional nuclear fusion methodologies carry a critical **volumetric control constraint (Volumetric Constraint)** inherent in managing a massive three-dimensional plasma profile.
 
-**이 한계를 극복하기 위해** 해당 인프라는 플라즈마를 1mm 크기의 미세 패킷 단위로 세편화한 뒤, 반경 30cm의 컴팩트한 진공 폐쇄형 선로(Closed-Loop Pipe) 내부로 격리합니다. 외곽에는 액체 리튬-납(Li-Pb) 합금 쉘을 배치하고, Z축 방향성을 부여하는 N개의 50Hz 제어 자석으로 이 액화 리튬 자켓의 동적 평형을 유지함으로써, 복잡했던 플라즈마류를 거시적 **1차원(1D) 선형 흐름으로 단순화**합니다.
+**To overcome this limitation,** this infrastructure downscales the plasma into discrete, 1mm micro-packets and isolates them within a compact, 30cm-radius closed-loop vacuum pipe corridor. A liquid lithium-lead (Li-Pb) alloy shell layer is deployed along the outer boundary. By utilizing N-configured 50Hz control magnets to apply a sequential Z-axis directional bias, the system maintains the dynamic equilibrium of this liquefied lithium jacket while structurally reducing the once-complex plasma flow into a simplified, **macro-1D linear stream**.
 
-**이렇게 플라즈마가 1차원으로 잘게 분산되면** 밀도가 낮아져 핵융합 유지가 어려워질 수 있습니다.
+**However, dispersing the plasma into such fragmented, one-dimensional states** lowers its overall density, which could severely hinder sustained nuclear fusion.
 
-**이를 해결하기 위해** 고주파의 연속적인 D-T(중수소-삼중수소) 패킷 사출과 리튬의 미세 기화를 연동합니다. 이 과정에서 발생하는 **시간차 밀도 중첩(Temporal Density Cascade)** 효과는, 후행 패킷이 선행 패킷 소멸 시 남겨진 잔류 운동 에너지와 부산물 밀도장을 디딤돌 삼아 연쇄적으로 점화하게 만들어 분산된 환경에서도 로슨 조건(Lawson Criterion)을 완벽히 충족시킵니다.
+**To resolve this density drop,** the architecture pairs high-frequency, continuous D-T (Deuterium-Tritium) packet injection with controlled micro-scale lithium vaporization. This process triggers a **temporal density cascade (Temporal Density Cascade)** effect, where trailing packets actively leverage the residual kinetic energy and byproduct density fields left behind by the decay of preceding packets. This sequential re-ignition chain ensures that the Lawson Criterion is comprehensively satisfied even within a decentralized environment.
 
-**하지만 연속적인 연쇄 점화 과정에서** 기화된 리튬이 핵심 코어 플라즈마를 오염시켜 안정성을 해칠 위험이 존재합니다.
+**Yet, during this continuous chain ignition,** vaporized lithium introduces a critical risk of poisoning the core plasma packets and disrupting overall system stability.
 
-**이 오염 문제를 해결하기 위해** 미세 플라즈마 패킷이 가진 극대화된 **부피 대비 표면적 비율**을 역이용합니다. 고에너지 표면층이 불순물을 바깥으로 빠르게 밀어내는 동시에, 스스로 코어를 감싸는 **자가 차폐형 이온화 블랭킷**을 형성하여 리튬 오염을 원천 차단하고 안정적인 수송을 보장합니다.
+**To counter this contamination issue,** the system weaponizes the extreme **surface-area-to-volume ratio** inherent to micro-scale plasma packets. The high-energy surface layer rapidly expels impurities outward while naturally forming a **self-shielding ionized blanket** around the core, fundamentally neutralizing lithium contamination and guaranteeing stable transport throughout the corridor.
 
-**선로를 따라 안정적으로 수송되는 과정에서도** 플라즈마 특유의 거시적 난류와 불안정성이 꿈틀거리기 마련입니다.
+**Even during stable transport along the pipeline,** the plasma’s intrinsic macro-turbulences and instabilities will inevitably attempt to manifest.
 
-**이 난류를 제어하기 위해** 강제로 자기장을 가해 억누르는 기존 방식 대신, 의도적으로 자기장이 완전히 상쇄되는 **자기장 제로 영역(Magnetic Null-Zones)**을 곳곳에 배치합니다. 흐름에 구조적인 **맥동성(Pulsation)**을 부여함으로써, 난류가 스스로 상쇄되고 희석(Dissipation)되도록 유도하는 자연스러운 제어 방식을 채택합니다.
+**To suppress this turbulence,** rather than relying on conventional methods that use continuous magnetic fields for forced suppression, the system strategically distributes **magnetic null-zones (Zero-Field Gaps)** where the magnetic fields completely cancel each other out. By introducing a structural **pulsation effect (Pulsation)** into the linear flow, macro-instabilities are induced to autonomously disrupt, dilute, and dissipate.
 
-**이처럼 시스템 전체가 맥동하며 정밀하게 흐르기 때문에** 제어 로직과 비상 시퀀스(Fail-Safe)를 극도로 단순화하여 결정론적 무결성을 확보할 수 있게 됩니다.
+**Because the entire network functions under this precisely controlled, pulsating stream,** the underlying control logic and emergency fail-safe sequences can be streamlined to the bare minimum, enforcing absolute deterministic system integrity.
 
-**이 단순해진 제어 구조 덕분에** 시스템을 완전히 멈추지 않고도 가동 중단(Shutdown) 없이 정기적으로 내부를 세척하는 **주기적 구조체 플러싱(Periodic Structural Flushing)**이 가능해져 구조적 회복 탄력성을 극대화합니다.
+**This simplified control architecture** eliminates the need for catastrophic plant shutdowns, rendering **periodic structural flushing (Periodic Structural Flushing)** completely viable during live operations and maximizing the overall structural resilience of the facility.
 
-**최종적으로 이 선로망 전체가** 완전한 정상 상태(Steady-State)의 동적 평형에 진입하게 되면, 매 사이클마다 외부에서 막대한 기동 에너지를 쏟아부어야 했던 **초기 점화 시퀀스를 완전히 생략**한 채, 스스로 에너지를 순환시키며 끊임없이 타오르는 고효율 지속 운전을 실현합니다.
+**Ultimately, once the entire closed-loop network** transitions into a complete steady-state dynamic equilibrium, the architecture aims to **eliminate the initial high-energy ignition sequence entirely**. Bypassing the massive external power injections traditionally required for subsequent operational cycles, the system shifts into a highly efficient, self-sustaining cruise state that continuously cycles its own energy.
 
-**인프라 설계 관련 생각을 정리 해둔 물리노트입니다.:** [`docs/Physics_note.md`](docs/Physics_note.md)
+**The physics notes containing my structured thoughts on this infrastructure design can be found here:** [`docs/Physics_note.md`](docs/Physics_note.md)
 
----
-
-## 위 인프라에 맞춰 설계해본 실시간 자가 안정화와 통합 제어를 위한 4단계 레이어 입니다.
-
-본 구조체의 실시간 자가 안정화와 통합 제어는 하부 실리콘 에지부터 최상위 추론 타워까지 4개 계층의 상하향식 폐루프 체인으로 실행됩니다.
-
-### 🧠 Layer 4 (Cognitive Inference): 거시 인지 사령탑 (The Macro-Inference Brain)
-*   **구조적 요약:** 플랜트 전역의 열역학 상태와 외부 전력망 수요를 패시브하게 관조하며 총출력을 조율하는 하향식 지능형 사령탑.
-*   **제어 집행 (Output):** 배관 과열 또는 진공 흡입 컨덕턴스 병목 포착 즉시 연료 주입 주파수를 최소선(`HZ_MIN`)으로 강하하는 **'자가 안정화 영역(Homeostasis Lock)'** 실시간 집행.
-
-### 👑 Layer 3 (Global Orchestration): 자율 복구 오케스트레이터 (The Self-Healing Heart)
-*   **구조적 요약:** 하부 임베디드 레이어가 오프로드한 결함 토큰을 수신하여 전역 선로의 무결성을 자율 복구하는 비동기 소프트웨어 중추.
-*   **제어 집행 (Output):** 결함 노드 감지 즉시 가상 전력망 마스크 격리 패스 적용 및 하부 칩셋 레지스터 영역을 원자적으로 직접 초기화하여 평시 기저선으로 복구.
-
-### 🏰 Layer 2 (Hardware-Software Bridge): 초고속 데이터 도관 (The Zero-Copy Conduit)
-*   **구조적 요약:** 최하단 실리콘 레지스터 물리 주소 공간과 상위 오케스트레이션 커널을 지연 시간 없이 상호 연결하는 순수 임베디드 데이터 관로.
-*   **제어 집행 (Output):** 제로카피 0ns 사출 달성 및 밸브 차단 제어 시 나눗셈 연산을 배제하여 실질 진공 소산 속도를 10ns 이내로 무분기 사출.
-
-### ⛓ Layer 1 (Hardware Silicon Edge): 결정론적 실리콘 에지 (The Real-Time Gate)
-*   **구조적 요약:** 가속기 파이프라인 최전방에서 이산 플라즈마 패킷과 전력 반도체 인버터 코일단을 직접 통제하는 최하위 물리 실리콘 에지 레이어.
-*   **제어 집행 (Output):** 수치 안정성 확보 및 결함 연속 누적 시 무분기 MUX를 작동시켜 진공 폭발 현상을 내부 완충 회랑 영역에 격리 포획.
 
 ---
-👉 **각 레이어별 무분기 수식 매트릭스, C++ 베어메탈 드라이버 바인딩 주소 및 6중 샌드위치 아키텍처 상세 사양은 [기술 시스템 규격서 (docs/System_Specs.md)](docs/System_Specs.md)에서 아키텍처 실물 파일명과 함께 확인 가능합니다.**
 
+## Designed in alignment with the infrastructure above, here are the 4 control layers tasked with real-time self-stabilization and integrated orchestration.
+
+The system's real-time self-stabilization and integrated control are executed via a top-down and bottom-up closed-loop chain spanning four distinct tiers, from the lowest silicon edge up to the highest inference tower.
+
+### 🧠 Layer 4 (Cognitive Inference): The Macro-Inference Brain
+*   **Architectural Summary:** A top-down intelligent command deck that passively monitors the plant-wide thermodynamic state and external grid demands to orchestrate total power output.
+*   **Control Execution (Output):** Upon detecting structural piping overheating or a vacuum suction conductance bottleneck, it immediately forces the fuel injection frequency down to its floor threshold (`HZ_MIN`), real-time executing a **'Homeostasis Lock'**.
+
+### 👑 Layer 3 (Global Orchestration): The Self-Healing Heart
+*   **Architectural Summary:** An asynchronous software backbone that ingests fault tokens offloaded by the underlying embedded layers to autonomously restore the structural integrity of the global pipeline network.
+*   **Control Execution (Output):** Upon detecting a faulty node, it instantly applies a virtual grid mask isolation path and atomically flushes the low-level chipset register spaces to restore them back to the baseline.
+
+### 🏰 Layer 2 (Hardware-Software Bridge): The Zero-Copy Conduit
+*   **Architectural Summary:** A pure embedded data pipeline that interconnects the lowest silicon register physical address space with the upper orchestration kernels at near-zero latency.
+*   **Control Execution (Output):** Achieves a zero-copy 0ns injection pipeline and entirely eliminates division operations during valve occlusion controls, driving actual vacuum dissipation speeds under 10ns via completely branchless injection.
+
+### ⛓ Layer 1 (Hardware Silicon Edge): The Real-Time Gate
+*   **Architectural Summary:** The lowest-level physical silicon edge layer deployed at the absolute front of the accelerator pipeline, directly commanding discrete plasma packets and power semiconductor inverter coil arrays.
+*   **Control Execution (Output):** Enforces numerical stability, and upon detecting a continuous accumulation of cascading faults, triggers a branchless MUX to trap and isolate vacuum explosion anomalies inside the internal buffer corridor zones.
+
+---
+👉 **The branchless mathematical matrices, C++ bare-metal driver binding addresses, and detailed specifications for the 6-layer sandwich architecture can be reviewed alongside actual architecture filenames in the [Technical System Specification (docs/System_Specs.md)](docs/System_Specs.md).**
 
 
 
 
 ```mermaid
 graph TD
-    %% 전체 제어 루프 구조 정의
-    subgraph SYSTEM_LAYERS [" DFR 4계층 상하향 폐루프 및 실시간 자가 안정화 명세"]
+    %% Global Control Loop Structural Definition
+    subgraph SYSTEM_LAYERS [" DFR 4-Layer Top-Down/Bottom-Up Closed-Loop & Real-Time Self-Stabilization Specification"]
         direction TB
 
-        %% Layer 4 정의
-        L4["<b>🧠Layer 4 : 거시적 인지 추론 </b><br><font size=2>• 2.0초 백그라운드 패시브 스캔, 외부 Grid 수요 동기화 및 전역 밸브 개도율 평균치 스캔<br>• 핵심 제어: 배관 과열(520°C 초과) 또는 가변 밸브 평균 개도율(ξ_avg &lt; 0.8) 병목 포착 즉시 연료 다이얼 5kHz 강하<br>• 실시간 핫 패스 구동단과 완전히 격리된 진공-열역학 복합 추론으로 런타임 지터 침투 원천 차단</font>"]
+        %% Layer 4 Definition
+        L4["<b>🧠Layer 4 : Macro-Cognitive Inference </b><br><font size=2>• 2.0s background passive scan, external Grid demand synchronization, and global valve opening rate average tracking.<br>• Core Control: Instantly forces the fuel dial down by 5kHz upon capturing piping overheating (&gt;520°C) or a variable valve average opening rate bottleneck (ξ_avg &lt; 0.8).<br>• Fully isolates complex vacuum-thermodynamic inference from the real-time hot path driver to fundamentally prevent runtime jitter injection.</font>"]
 
-        %% Layer 3 정의
-        L3["<b>👑Layer 3 : 사후 플러시 및 오케스트레이션 </b><br><font size=2>• 비동기 asyncio 이벤트 루프 기반 16개 독립 자석 섹터 위상 및 실시간 가변 밸브 상태 추적 테이블 관리<br>• 핵심 제어: 고장 발생 즉시 비상 개도(0.0) 집행, C++ 연동 동적 진공 감쇄 지연 시간(5/decay_rate) 대기 버퍼 집행<br>• OS 커널 우회를 통한 하부 칩셋 레지스터 원자적 0 포맷 및 가변 밸브 1.0f 완전 개방 이완 복구 재점화 무결성 마감</font>"]
+        %% Layer 3 Definition
+        L3["<b>👑Layer 3 : Post-Flush & Orchestration </b><br><font size=2>• Manages 16 independent magnet sector phases and real-time variable valve state tracking tables built on an asynchronous asyncio event loop.<br>• Core Control: Executes immediate emergency opening configuration (0.0) upon fault generation, and enforces a C++ integrated dynamic vacuum decay latency (5/decay_rate) wait buffer.<br>• Bypasses the OS kernel to atomically zero-format low-level chipset registers and triggers a 1.0f full-open variable valve relaxation for integer recovery and re-ignition integrity.</font>"]
 
-        %% Layer 2 정의
-        L2["<b>🏰Layer 2 : 메모리 인터셉터 & 무분기 반응 속도 </b><br><font size=2>• C++20 [[unlikely]] 속성을 활용해 평시 구동단 CPU 파이프라인 지터를 0ns로 소산 및 32바이트 물리 주소 정렬 가드 작동<br>• 파이썬 가비지 컬렉터 무력화 py::capsule 라이프사이클 펜스 작동 및 무복사 NumPy 뷰 직결(Zero-copy)<br>• 핵심 제어: 밸브 차단 시 나눗셈 배제 및 곱셈 치환 수식 기반 10ns 이내 반응 속도 상향 사출 및 volatile 직접 주입 배리어 완성</font>"]
+        %% Layer 2 Definition
+        L2["<b>🏰Layer 2 : Memory Interceptor & Branchless Latency </b><br><font size=2>• Utilizes C++20 [[unlikely]] attributes to dissipate operational CPU pipeline jitter down to 0ns and deploys a 32-byte physical address alignment guard.<br>• Neutralizes the Python Garbage Collector via py::capsule lifecycle fences and establishes a zero-copy direct connection to NumPy views.<br>• Core Control: Eliminates division, deploying a multiplication-substituted mathematical formula to achieve sub-10ns response injection and completes a volatile direct injection barrier.</font>"]
 
-        %% Layer 1 메인 컨테이너 및 수평 노드 정의 (subgraph 우회로 정렬 유도)
-        L1["<b>⛓Layer 1 : 결정론적 하드웨어 커널 </b><br><font size=2>• if-else 분기를 원천 배제한 100% 무분기 비트 마스킹 및 스칼라 파이프라인 0ns 사출<br>• 파데 노치 필터 및 조셉 폼 기반 수치해석적 음수반전 방어벽 적용 및 가변 밸브 개도 레지스터 내장<br>• 핵심 제어: 5회 결함 반복 즉시 일반 노드는 1.5f 가속 추진 및 밸브 완전 폐색(0.0) 격리 포획 / 챔버 노드는 진행 방향 차단 및 우회 게이트 오픈 관성 사출</font>"]
+        %% Layer 1 Main Container & Horizontal Node Definition
+        L1["<b>⛓Layer 1 : Deterministic Hardware Kernel </b><br><font size=2>• Enforces 100% branchless bit-masking and a scalar pipeline to eliminate if-else branches, achieving 0ns injection latency.<br>• Applies a numerical negative-inversion barrier based on Padé notch filters and the Joseph form, embedding internal variable valve opening registers.<br>• Core Control: Upon 5 consecutive fault iterations, standard nodes trigger 1.5f acceleration thrusting and full valve occlusion (0.0) for containment; chamber nodes block forward progression and deploy a bypass gate for inertial ejection.</font>"]
 
-        subgraph L1_GRID ["Layer 1 실물 파이프라인 (그리드 메시 통신 축)"]
+        subgraph L1_GRID ["Layer 1 Physical Pipeline (Grid Mesh Communication Axis)"]
             direction LR
-            L1_N1["n번째 자석 노드<br>(평시 50Hz 파도타기 및 노치 컷)<br>(비상 시 후방 가속 1.5f 및 밸브 0.0 차단)"] <-->|글로벌 클록 없음<br>비동기 이웃 메시 통신| L1_N2["n+1번째 자석 노드<br>(챔버 우회 제어 노드)<br>(비상 시 순방향 차단 및 챔버 탈출축 개방)"]
+            L1_N1["nth Magnet Node<br>(Nominal 50Hz wave-riding & notch cut)<br>(Emergency: 1.5f rear acceleration & valve 0.0 occlusion)"] <-->|No Global Clock<br>Asynchronous Neighbor Mesh Comm| L1_N2["n+1th Magnet Node<br>(Chamber Bypass Control Node)<br>(Emergency: Forward occlusion & chamber escape axis open)"]
         end
 
-        %% 상하향식 유기적 피드백 관로 연결
+        %% Top-Down / Bottom-Up Organic Feedback Loop Connections
         L4 <--> L3
         L3 <--> L2
         L2 <--> L1
         L1 <--> L1_GRID
     end
 
-    %% 🎨 깃허브 파서 안전 규격 스타일링
+    %% 🎨 GitHub Parser Safe Specification Styling
     style SYSTEM_LAYERS fill:#0d1117,stroke:#30363d,stroke-width:2px,color:#c9d1d9
     style L1_GRID fill:#161212,stroke:#ff7b72,stroke-width:1px,color:#c9d1d9
     
@@ -104,15 +104,17 @@ graph TD
     style L1_N1 fill:#2c1919,stroke:#ff7b72,stroke-width:1px,color:#ff7b72
     style L1_N2 fill:#2c1919,stroke:#ff7b72,stroke-width:1px,color:#ff7b72
 
+
 ```
 
 
 
-## 📂 추가 명세 및 실전 배포 가이드라인 (Comprehensive Specifications)
+## 📂 Comprehensive Specifications & Production Deployment Guidelines
 
-* 📄 **하드웨어 사양 및 로우레벨 커널 인터페이스:** [`docs/System_Specs.md`](docs/System_Specs.md)
-* 📄 **3D 토카막과 DFR 아키텍처 비교:** [`docs/system_comparison.md`](docs/system_comparison.md)
-* 📄 **평시 정상 운전 및 구조체의 발전 방식:** [`docs/Normal_Operation_Specs.md`](docs/Normal_Operation_Specs.md)
-* 📄 **비상 상황 대응 및 재가동 시퀀스:** [`docs/Emergency_Sequence.md`](docs/Emergency_Sequence.md)
-* 📄 **GaN/SiC 반도체 주입용 고정 위상차 오프셋 행렬:** [`docs/dfr_phase_shift_matrix_spec.md`](docs/dfr_phase_shift_matrix_spec.md)
-* 📄 **DFR 관련 물리노트:** [`docs/Physics_note.md`](docs/Physics_note.md)
+* 📄 **Hardware Specifications & Low-Level Kernel Interfaces:** [`docs/System_Specs.md`](docs/System_Specs.md)
+* 📄 **Comparative Analysis: 3D Tokamak vs. DFR Architecture:** [`docs/system_comparison.md`](docs/system_comparison.md)
+* 📄 **Nominal Steady-State Operations & Power Generation Methodologies:** [`docs/Normal_Operation_Specs.md`](docs/Normal_Operation_Specs.md)
+* 📄 **Emergency Fail-Safe Contingencies & Re-ignition Sequences:** [`docs/Emergency_Sequence.md`](docs/Emergency_Sequence.md)
+* 📄 **Fixed Phase-Shift Offset Matrix for GaN/SiC Power Semiconductor Gate Drivers:** [`docs/dfr_phase_shift_matrix_spec.md`](docs/dfr_phase_shift_matrix_spec.md)
+* 📄 **Theoretical Foundations & Plasma Physics Notebook:** [`docs/Physics_note.md`](docs/Physics_note.md)
+
