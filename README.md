@@ -30,7 +30,7 @@
 
 **This simplified control architecture** eliminates the need for catastrophic plant shutdowns, rendering **periodic structural flushing (Periodic Structural Flushing)** completely viable during live operations and maximizing the overall structural resilience of the facility.
 
-**Ultimately, once the entire closed-loop network** transitions into a complete steady-state dynamic equilibrium, the architecture aims to **eliminate the initial high-energy ignition sequence entirely**. Bypassing the massive external power injections traditionally required for subsequent operational cycles, the system shifts into a highly efficient, self-sustaining cruise state that continuously cycles its own energy.
+Ultimately, once the entire closed-loop network transitions into a complete steady-state dynamic equilibrium, the system maximizes its performance envelope toward a self-sustaining ignition state (Q > 1). This drastically reduces dependency on continuous external power injection, enabling a highly efficient, load-following operational profile.
 
 **The physics notes containing my structured thoughts on this infrastructure design can be found here:** [`docs/Physics_note.md`](docs/Physics_note.md)
 
